@@ -7,51 +7,25 @@
 \usepackage[brazil]{babel}   
 \usepackage[latin1]{inputenc}  
 
-     
 \sloppy
 
-\title{Instructions for Authors of SBC Conferences\\ Papers and Abstracts}
+\title{Um estudo sobre o uso de memórias STT-RAM voláteis em diferentes níveis de memória cache}
 
-\author{Luciana P. Nedel\inst{1}, Rafael H. Bordini\inst{2}, Flávio Rech
-  Wagner\inst{1}, Jomi F. Hübner\inst{3} }
+\author{Giovane de O. Torres\inst{1}, Rodrigo M. Duarte\inst{1}}
 
-
-\address{Instituto de Informática -- Universidade Federal do Rio Grande do Sul
-  (UFRGS)\\
-  Caixa Postal 15.064 -- 91.501-970 -- Porto Alegre -- RS -- Brazil
-\nextinstitute
-  Department of Computer Science -- University of Durham\\
-  Durham, U.K.
-\nextinstitute
-  Departamento de Sistemas e Computação\\
-  Universidade Regional de Blumenal (FURB) -- Blumenau, SC -- Brazil
-  \email{\{nedel,flavio\}@inf.ufrgs.br, R.Bordini@durham.ac.uk,
-  jomi@inf.furb.br}
+\address{Centro de Desenvolvimento Tecnológico -- UFPel \\
+  96.010-610 -- Pelotas -- RS -- Brasil
+  \email{\{gdotorres,rmduarte\}@inf.ufpel.edu.br}
 }
 
 \begin{document} 
 
 \maketitle
-
-\begin{abstract}
-  This meta-paper describes the style to be used in articles and short papers
-  for SBC conferences. For papers in English, you should add just an abstract
-  while for the papers in Portuguese, we also ask for an abstract in
-  Portuguese (``resumo''). In both cases, abstracts should not have more than
-  10 lines and must be in the first page of the paper.
-\end{abstract}
-     
+   
 \begin{resumo} 
-  Este meta-artigo descreve o estilo a ser usado na confecção de artigos e
-  resumos de artigos para publicação nos anais das conferências organizadas
-  pela SBC. É solicitada a escrita de resumo e abstract apenas para os artigos
-  escritos em português. Artigos em inglês deverão apresentar apenas abstract.
-  Nos dois casos, o autor deve tomar cuidado para que o resumo (e o abstract)
-  não ultrapassem 10 linhas cada, sendo que ambos devem estar na primeira
-  página do artigo.
+  
 \end{resumo}
 
-Citação teste~\cite{Chang2013}.
 \section{Introdução}
 	\begin{itemize}
 		\item Sistemas de memória. (desempenho e energia).
@@ -77,9 +51,34 @@ Citação teste~\cite{Chang2013}.
 
 \section{Trabalhos Relacionados}
 
+\begin{table}[!h]
+\centering
+\begin{tabular}{lcp{7cm}}
+	\multicolumn{1}{c}{\textbf{Artigo}} & \multicolumn{1}{c}{\textbf{Níveis de Cache}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
+	\cite{Smullen2011} & L1,L2,L3 & Primeiro artigo a abordar STT-RAM volátil \\
+	\cite{li2011} & & \\
+	\cite{Sun2011} & & \\
+	\cite{Jog2012} & & \\
+	\cite{Chang2013} & & \\
+	\cite{Li2015} & & \\
+	\cite{Kim2015} & & \\
+	\cite{qiu2016} & & \\
+	\cite{kim2016} & & \\
+\end{tabular}
+\end{table}	
+
 \section{Discussões}
+
+\begin{itemize}
+	\item Em quais níveis de cache a STT-RAM volátil é melhor utilizada? Caches L1? LLC (Last-level caches)?
+	\item Quais configurações a STT-RAM volátil apresenta melhor desempenho (em relação a si mesma/em relação às SRAM); além disto, quais as que apresentam as maiores quedas no consumo energético
+	\item Avaliação dos tradeoffs entre diversos aspectos das células de memória STT-RAM volátil (área, consumo energético, latência)
+
+\end{itemize}
+
 \section{Conclusões}
 
+É válido o uso de STT-RAM como memórias voláteis em sistemas de memória?
 
 \bibliographystyle{sbc}
 \bibliography{survey-ham}
