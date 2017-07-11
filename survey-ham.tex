@@ -26,59 +26,17 @@
   
 \end{resumo}
 
-\section{Introdução}
-	\begin{itemize}
-		\item Sistemas de memória. (desempenho e energia).
-		\item Meios para melhorar o desempenho (latência e energia).
-		\item Novas tecnologias de memória (foco STT-RAM).
-	\end{itemize}
+\input{sections/01_intro.tex}
 
-\subsection{NVM (STT-RAM)}
-	\begin{enumerate}
-		\item Uso de caches
-		\item Memória não volátil (retem informação por tempo indefinido).
-		\item Reduzir a característica de não-volatilidade (caches estão sujeitas a grandes quantidades de escrita, sendo os dados alterados com o passar do tempo, não sendo necessário a retenção por longos períodos de tempo.)
-		\item A ideia principal é reduzir a área planar da célula de memória com o intuito de reduzir principalmente a latência de escrita. Como consequência reduz-se a capacidade de retenção do dado por tempo indeterminado. Com isso consegue uma maior densidade de memória no mesmo espaço ocupado por uma SRAM tradicional. 
-	\end{enumerate}
+\input{sections/02_sttram_volatile.tex}
 
-\subsection{Objetivos do trabalho}
-      Realizar um estudo sobre trabalhos que abordem a área da STT-RAM volátil, usada em diferentes níveis de cache. Avaliando quais as melhores abordagens para a utilização desta categoria de memória.
+\newpage
       
-\section{O que são STT-RAM Voláteis}
-	Aqui será explicado como é possível quebrar a característica de não-volatilidade das STT-RAM.
-	
-	Quais são os efeitos da quebra da não-volatilidade.	
+\input{sections/03_related_work.tex}
 
-\section{Trabalhos Relacionados}
+\input{sections/04_discussions.tex}
 
-\begin{table}[!h]
-\centering
-\begin{tabular}{lcp{7cm}}
-	\multicolumn{1}{c}{\textbf{Artigo}} & \multicolumn{1}{c}{\textbf{Níveis de Cache}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
-	\cite{Smullen2011} & L1,L2,L3 & Primeiro artigo a abordar STT-RAM volátil \\
-	\cite{li2011} & & \\
-	\cite{Sun2011} & & \\
-	\cite{Jog2012} & & \\
-	\cite{Chang2013} & & \\
-	\cite{Li2015} & & \\
-	\cite{Kim2015} & & \\
-	\cite{qiu2016} & & \\
-	\cite{kim2016} & & \\
-\end{tabular}
-\end{table}	
-
-\section{Discussões}
-
-\begin{itemize}
-	\item Em quais níveis de cache a STT-RAM volátil é melhor utilizada? Caches L1? LLC (Last-level caches)?
-	\item Quais configurações a STT-RAM volátil apresenta melhor desempenho (em relação a si mesma/em relação às SRAM); além disto, quais as que apresentam as maiores quedas no consumo energético
-	\item Avaliação dos tradeoffs entre diversos aspectos das células de memória STT-RAM volátil (área, consumo energético, latência)
-
-\end{itemize}
-
-\section{Conclusões}
-
-É válido o uso de STT-RAM como memórias voláteis em sistemas de memória?
+\input{sections/05_conclusions.tex}
 
 \bibliographystyle{sbc}
 \bibliography{survey-ham}
