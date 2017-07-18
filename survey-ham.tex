@@ -1,11 +1,17 @@
 \documentclass[12pt]{article}
 
 \usepackage{sbc-template}
-
 \usepackage{graphicx,url}
 
 \usepackage[brazil]{babel}   
-\usepackage[latin1]{inputenc}  
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc} % inserir as url tudo
+
+\usepackage{xargs}
+
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\newcommandx{\needcite}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\warning}[2][1=]{\todo[linecolor=yellow,backgroundcolor=yellow!25,bordercolor=yellow,#1]{#2}}
 
 \sloppy
 
