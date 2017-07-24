@@ -15,3 +15,29 @@
 	\cite{kim2016} & & \\
 \end{tabular}
 \end{table}	
+
+	No trabalho apresentado em \cite{li2011}, é realizado um \textit{tradeoff} sobre o desempenho, confiabilidade e consumo energético das STT-RAM, aplicados aos requisitos no nível de arquitetura. No trabalho é apresentada a modelagem da STT-RAM para a redução do tempo de retenção dos dados. O objetivo é a aplicação em níveis mais específicos da hierarquia de memória, com foco em caches on-chip.
+	
+	Primeiramente é feita uma analise para verificar quais são os impactos na quebra da não volatilidade da STT-RAM, para isso é realizada uma simulação de três diferentes desenhos do MJT com 45x95nm de tamanho. São realizadas duas otimizações da baseline, chamadas de Opt1 e Opt2. Sendo a baseline com seu tempo de retenção de dados de 4.27 anos e os outros dois otimizados para chaveamento (quando menor o tempo de retenção dos dados, menor o tempo necessário para chaveamento. Nos testes faz-se perceber que ao reduzir o tempo de retenção dos dados de 4 anos para $265 \mu s$, a corrente decai de $164.5 \mu A$ para $71.4 \mu A$ para um tempo de chaveamento de 10ns e temperatura de 350K. Ao se colocar uma corrente de $125 \mu A$ o tempo de chaveamento dos três MJTs varia de 29.8ns para 3.6ns, um ganho de ate 8 vezes.
+	
+	É demostrando também a dependência da temperatura. A estabilidade da barreira magnética do MJT é sensível a temperatura de trabalho, assim, ao se aumentar a temperatura de 275K para 350K a corrente de chaveamento tende a diminuir.
+	
+	Logo apos, o trabalho apresenta estatísticas de padrão de acesso a cache. Uma simulação é feita em um processador \textit{quad-core} sobre as seguintes configurações de cache L1 de dados e L2:
+
+\begin{table}[]
+\centering
+\begin{tabular}{lcc}
+\hline
+                             & \multicolumn{1}{l}{Cache de dados L1} & \multicolumn{1}{l}{Cache L2} \\ \hline
+Tamanho (Bytes)              & 32768                                 & 4194304                       \\ \hline
+Associatividade              & 8                                     & 16                            \\ \hline
+Tamanho do bloco (bytes)     & 64                                    & 64                            \\ \hline
+Latência de Leitura (ciclos) & 3                                     & 14                            \\ \hline
+\end{tabular}
+\caption{Configuração das caches L1 de dados e L2, para a simulação.}
+\label{my-label}
+\end{table}	
+	
+	 O teste é realizado usando quatro aplicações do SPEC benchmark que são: 401.bzip2, 433.milc, 434zeusmp e 470lbm. Cada uma destas aplicações e executada em um \textit{core} diferente, sendo simulado um total de 2 bilhões de instruções. Para a cache L1 mais de 95\% dos dados são acessados nos primeiros $10^{5}$ ciclos de clock, apos isto, estes dados são carregados ou atualizados. Em alguns casos, como no benchmark 401.bzip2 o número pode alcançar até 99\% e que comportamentos similares se apresentaram na cache L2. Estas observações demostram que uma pequena porção da cache de dados sera ativa por longos períodos, como exemplo do benchmark 401.bzip2 que o tempo entre uma escrita e o ultimo tempo em que os dados são lidos, excede $10^6$ ciclos de \textit{clock}. Este tempo entre leitura e escrita é utilizado para determinar o minimo tempo de retenção de dados pelo MJT.
+	 
+	 No final é proposto 
