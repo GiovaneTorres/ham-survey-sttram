@@ -1,0 +1,38 @@
+\begin{tikzpicture}
+
+\draw[black,fill=black!30] (0,0) rectangle (3,0.5);		% Left reference layer
+\draw[black] (0,0.5) rectangle (3,0.8);					% Left barrier
+\draw[black,fill=black!30] (0,0.8) rectangle (3,1.3);	% Left free layer
+
+\draw[<-,very thick] (1,1.05) -- (2,1.05);				% Arrow of reference layer
+\draw[<-,very thick] (1,0.25) -- (2,0.25);				% Arrow of free layer
+
+\draw[black,fill=black!30] (8,0) rectangle (11,0.5);	% Right reference layer
+\draw[black] (8,0.5) rectangle (11,0.8);				% Right barrier
+\draw[black,fill=black!30] (8,0.8) rectangle (11,1.3);	% Right free layer
+
+\draw[<-,very thick] (9,1.05) -- (10,1.05);				% Arrow of reference layer
+\draw[->,very thick] (9,0.25) -- (10,0.25);				% Arrow of free layer
+
+\node at (5.5,1.05) {Camada de referência}; 			% Text: reference layer
+\node at (5.5,0.25) {Camada livre}; 					% Text: free layer
+
+\draw[-] (1.5,0) -- (1.5,-0.5);							% Left downwards small line 
+\draw[-] (9.5,0) -- (9.5,-0.5);							% Right downwards small line 
+
+\draw[black] (1.5,-0.6) circle (0.1);					% Left downwards small circle
+\draw[black] (9.5,-0.6) circle (0.1);					% Right downwards small circle
+
+\draw[-] (1.5,1.3) -- (1.5,1.8);						% Left upwards small line 
+\draw[-] (9.5,1.3) -- (9.5,1.8);						% Right upwards small line 
+
+\draw[black] (1.5,1.9) circle (0.1);					% Left upwards small circle
+\draw[black] (9.5,1.9) circle (0.1);					% Right upwards small circle
+
+\node at (1.5,-1.2) {"1"~lógico};						% Text: logical 1
+\node at (1.5,-1.7) {Alta resistividade};				% Text: high resistivity
+
+\node at (9.5,-1.2) {"0"~lógico};						% Text: logical 0
+\node at (9.5,-1.7) {Baixa resistividade};				% Text: low resistivity
+
+\end{tikzpicture}
