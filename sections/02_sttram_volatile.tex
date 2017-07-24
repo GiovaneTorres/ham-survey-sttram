@@ -1,4 +1,21 @@
-\section{O que são STT-RAM Voláteis}
-	Aqui será explicado como é possível quebrar a característica de não-volatilidade das STT-RAM.
+\section{STT-RAM volátil}
+
+	A STT-RAM é uma memória conceitualmente não volátil e é considerada como uma das prováveis tecnologias que substituirão as SRAM~\needcite{Afirmação deveras intensa} -- sendo estas últimas encontradas em memórias \textit{cache}. As grandes vantagens das STT-RAM sobre as SRAM estão em: (i) na densidade, a qual pode ser quatro vezes maior~\cite{zhou:09} e (ii) o menor consumo energético devido ao não vazamento de corrente~\cite{wang:13}. Por outro lado, um dos principais problemas encontrados na STT-RAM é a estrondosa assimetria das operações de leitura e escrita em uma célula de memória -- sendo que operações de escrita são bem mais custosas do que operações de leitura, tanto em energia quanto em tempo.
+
+	\warning[inline]{Explicação do que é STT-RAM? Composição? Características? Depois volatilide}
 	
-	Quais são os efeitos da quebra da não-volatilidade.	
+	\todoin{
+		Aqui será explicado como é possível quebrar a característica de não-volatilidade das STT-RAM.
+
+		Quais são os efeitos da quebra da não-volatilidade.	
+	}
+
+%\textit{Spin Torque Transfer Random Access Memory} (STT-RAM) é uma memória do tipo não volátil considerada como sendo uma das prováveis tecnologias para substituir as SRAM~\cite{chen:10, thomas:14}, as quais são frequentemente encontradas hoje como memórias \emph{cache}. As vantagens deste tipo de memória está em sua densidade, o que pode ser 4x maior que as SRAM~\cite{zhou:09}, além de consumir menos energia ao não gerar vazamento de corrente~\cite{wang:13}.
+
+%Contudo, este tipo de tecnologia apresenta uma grande dificuldade a ser superada. Assim como nas PCM, as STT-RAM também possuem assimetria nos tempos de acesso e de escrita a uma célula na memória. Nas STT-RAM, o tempo de leitura e o gasto energético para esta operação são comparáveis a uma SRAM. Já as escritas possuem um aumento considerável na latência e no consumo de energia comparando com a SRAM~\cite{kultursay:13}.
+
+%\section{Composição}
+
+%A STT-RAM é considerada uma evolução das MRAM (\textit{Magnetic Random Access Memory})~\cite{driskill:11}, as quais são compostas de dois elementos de armazenamento magnético: um com polaridade fixa, o outro com polaridade com a possibilidade de alteração~\cite{meena:14}. Estas camadas também são conhecidas como camada de referência e camada livre~\cite{zhou:09}, respectivamente. Os dispositivos magnéticos são posicionados um acima do outro, com uma barreira que é inserida no meio destes elementos  definida como um túnel de isolamento fino. O esquema da Figura~\ref{fig:mramcell} exibe um exemplo de célula de uma MRAM.
+
+%A STT-RAM tem como base a MRAM, porém possui como características tempos de acesso e leitura mais rápidos e tamanhos menores para as células, apresentando melhor escalabilidade~\cite{meena:14}. O efeito conhecido como \textit{Spin Transfer Torque} é onde uma corrente pode efetuar uma movimentação brusca a camadas magnéticas que se encontram entre materiais não-magnéticos.~\cite{coalmon:09}. Além dos elementos que compõem uma MRAM tradicional, uma STT-RAM apresenta três \textit{lines}, utilizadas para selecionar células e efetuar as leituras e as escritas, as quais são descritas como \textit{Word Line} (WL), \textit{Base Line} (BL) e \textit{Source Line} (SL). A Figura~\ref{fig:sttramcell} mostra o esquemático de uma célula do tipo STT-RAM.
