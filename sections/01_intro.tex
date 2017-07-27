@@ -15,29 +15,9 @@ Apesar dos diversos pontos positivos que as MNVs apresentam, as mesmas não são l
 
 Dentro do contexto de MNVs, existe diversos tipos de memórias as quais são diferenciadas pelos materiais que compõem suas células. Memórias estudadas dentro da bibliografia incluem: PCRAM (\textit{Phase Change Random Access Memory}), STT-RAM (\textit{Spin Transfer Torque Random Access Memory}), RRAM (\textit{Resistive Random Access Memory}), MRAM (\textit{Magnetic Random Access Memory}), FERAM (\textit{Ferroelectric RAM}), além de outras memórias mais emergentes como \textit{Racetrack Memory} e memória molecular~\cite{meena:14}. Dentro deste amplo contexto, PCRAM, STT-RAM e RRAM são consideradas como NVMs que melhor podem compor sistemas de memória com grande eficiência e alta densidade, devido as propriedades melhoradas de escalabilidade e não volatilidade~\cite{young:15}, além de prometerem ser empregadas como memórias universais devido à capacidade de armazenamento e latências comparáveis a tecnologias como a DRAM~\cite{mittal:16}.
 
-Para a melhor extração de desempenho de MNVs, existe diversas frentes de pesquisas que incluem modificações em arquiteturas bem como técnicas que possibilitem efetuar melhoras nas memórias. Uma das possibilidades incluem a redução da capacidade de retenção das MNVs com a finalidade de permitir que haja menor latência nas operações de memória, especialmente nas escritas. Esta técnica é chamada de \textbf{relaxamento de retenção}, e pode ser aplicada ao utilizar-se das MNVs em \textit{caches} ou na memória principal -- isto porque estas memórias estão sujeitas a consideráveis quantidades de escritas, sendo os dados alterados com o passar do tempo. Com isto, reter informações por longos períodos de tempo sem modificações torna-se dispensável.~\needcite{Pra mim isso parece óbvio, mas talvez precise de algo que reforce para citar..?}. A utilização de relaxamento de retenção é vista como uma técnica potencial para difundir o uso de MNVs em sistemas de memória. Dentro do melhor do conhecimento dos autores, o relaxamento de retenção teve até o presente momento seus efeitos testados na STT-RAM~\warning{Quero dizer aqui que relaxamento de retenção é estudado só na STT-RAM, mas de maneira pomposa}, sendo objeto de estudo de diversos trabalhos. No trabalho de~\cite{mittal:16}, a combinação de STT-RAM com relaxamento de retenção é chamada de \textbf{STT-RAM volátil}.
+Para a melhor extração de desempenho de MNVs, existe diversas frentes de pesquisas que incluem modificações em arquiteturas bem como técnicas que possibilitem efetuar melhoras nas memórias. Uma das possibilidades incluem a redução da capacidade de retenção das MNVs com a finalidade de permitir que haja menor latência nas operações de memória, especialmente nas escritas. Esta técnica é chamada de \textbf{relaxamento de retenção}~\warning{Talvez mudar este nome}, e pode ser aplicada ao utilizar-se das MNVs em \textit{caches} ou na memória principal -- isto porque estas memórias estão sujeitas a consideráveis quantidades de escritas, sendo os dados alterados com o passar do tempo. Com isto, reter informações por longos períodos de tempo sem modificações torna-se dispensável. A utilização de relaxamento de retenção é vista como uma técnica potencial para difundir o uso de MNVs em sistemas de memória. Dentro do melhor do conhecimento dos autores, o relaxamento de retenção teve até o presente momento seus efeitos testados na STT-RAM, sendo objeto de estudo de diversos trabalhos. No trabalho de~\cite{mittal:16}, a combinação de STT-RAM com relaxamento de retenção é chamada de \textbf{STT-RAM volátil}.
 
 Com isto, este trabalho tem como objetivo efetuar um estudo sobre as formas de utilização da STT-RAM volátil nos diferentes níveis dentro de uma hierarquia de memória -- visando quais as melhores abordagens para o uso desta memória, bem como estudar a viabilidade da utilização de STT-RAM volátil.
 
 \warning[inline]{Inserir um parágrafo sobre a estrutura a seguir do texto? Seção 2 apresenta bla bla bla..}
-
-\todoin{
-	Esqueleto do texto:
-
-\begin{itemize}
-	\item Sistemas de memória. (desempenho e energia).
-	\item Meios para melhorar o desempenho (latência e energia).
-	\item Novas tecnologias de memória (foco STT-RAM).
-\end{itemize}
-
-\textbf{NVM (STT-RAM)}
-\begin{enumerate}
-	\item Uso de caches
-	\item Memória não volátil (retem informação por tempo indefinido).
-	\item Reduzir a característica de não-volatilidade (caches estão sujeitas a grandes quantidades de escrita, sendo os dados alterados com o passar do tempo, não sendo necessário a retenção por longos períodos de tempo.)
-	\item A ideia principal é reduzir a área planar da célula de memória com o intuito de reduzir principalmente a latência de escrita. Como consequência reduz-se a capacidade de retenção do dado por tempo indeterminado. Com isso consegue uma maior densidade de memória no mesmo espaço ocupado por uma SRAM tradicional. 
-\end{enumerate}
-
-\textbf{Objetivos do trabalho}
-      Realizar um estudo sobre trabalhos que abordem a área da STT-RAM volátil, usada em diferentes níveis de cache. Avaliando quais as melhores abordagens para a utilização desta categoria de memória.
-}
+\warning[inline]{Incluir algo sobre as discussões/conclusões quando estas seções estiverem prontas}
