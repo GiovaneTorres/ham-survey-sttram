@@ -6,7 +6,7 @@
 	\multicolumn{1}{c}{\textbf{Artigo}} & \multicolumn{1}{c}{\textbf{Níveis de Cache}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
 	\cite{Smullen2011} & L1,L2,L3 & Primeiro artigo a abordar STT-RAM volátil \\
 	\cite{li2011} & L1 e L2 & \\
-	\cite{Sun2011} & & \\
+	\cite{Sun2011} & L1, L2 e L3 & \\
 	\cite{Jog2012} & L2 & \\
 	\cite{Chang2013} & & \\
 	\cite{Li2015} & & \\
@@ -52,6 +52,23 @@ Latência de Leitura (ciclos) & 3                                     & 14       
 	 O teste é realizado usando quatro aplicações do SPEC benchmark que são: 401.bzip2, 433.milc, 434zeusmp e 470lbm. Cada uma destas aplicações é executada em um \textit{core} diferente, sendo simulado um total de 2 bilhões de instruções. Para a \textit{cache} L1 mais de 95\% dos dados são acessados nos primeiros $10^{5}$ ciclos de \textit{clock}, apos isto, estes dados são carregados ou atualizados. Em alguns casos, como no \textit{benchmark} 401.bzip2 o número pode alcançar até 99\% e que comportamentos similares se apresentaram na \textit{cache} L2. Estas observações demostram que uma pequena porção da \textit{cache} de dados será ativa por longos períodos, como exemplo do \textit{benchmark} 401.bzip2 que o tempo entre uma escrita e o último tempo em que os dados são lidos, excede $10^6$ ciclos de \textit{clock}. Este tempo entre leitura e escrita é utilizado para determinar o tempo mínimo de retenção de dados pelo MTJ.
 	 
 	 No final é apresentado um modelo de \textit{cache} híbrida conjunto associativa com $n$-vias, onde a mesma é dividida em dois modelos de MTJ, um com baixa retenção de dados (utilizando os dados apresentados anteriormente) e outra com alta retenção. Cada bloco da \textit{cache} otimizada contém um contador que verifica quanto tempo os dados estão armazenados no bloco. Caso estes estejam por muito tempo, o sistema copia os dados da \textit{cache} otimizada para a não otimizada. Para avaliar o desempenho, este novo modelo é comparado a um usando STT-RAM sem otimização. Os resultados mostram que usando metade das vias de uma \textit{cache} L2 com 16 vias otimizada, o desempenho do novo modelo chega a ser 80\% melhor. A conclusão é que a redução da não volatilidade da STT-RAM e o uso de uma \textit{cache} híbrida, podem aumentar o desempenho e reduzir o consumo energético. Estas conclusões são retiradas da análise do modelo proposto e os testes realizados com os \textit{benchmarks}.
+
+% Sun2011 %
+	
+	Em \cite{Sun2011} também é apresentada a proposta de implementação de \textit{caches} hibridas, porém é apresentada a preocupação com a correta retenção dos dados na STT-RAM. Para se conseguir latências de escrita suficientemente baixas, é necessário reduzir muito o período de retenção dos dados, sendo que dependendo do tempo que o dado vai permanecer na \textit{cache}, um processo processo de \textit{refresh} dos dados acaba se tornando necessário. Assim é proposta a implementação de um sistema de \textit{refresh} dinâmico. Para cada bloco da \textit{cache} é inserido um contador que monitora o tempo de retenção dos dados, se nenhuma escrita/leitura ocorre em um determinado período limite pré definido, um \textit{refresh} ocorre. A ideia do uso do contador é para evitar a necessidade de \textit{refreshs} desnecessários.
+	
+	Uma \textit{cache} com dois modelos de MTJ é proposto, um com baixa e outro com alta retenção. Os dados são movidos das regiões de alta para as de baixa retenção, ou vice versa, através das seguintes politicas: 
+		\begin{itemize}
+			\item \textit{Write Intensive}: se a intensidade de escrita é alta, e os dados se encontram em uma região de alta retenção, os dados são migrados para uma região de baixa.
+			\item \textit{Read intensive}: se os dados se encontram em uma região de baixa retenção, então estes são migrados para uma região de alta.
+			\item \textit{Neither write nor read intensive}: Os dados são mantidos em uma região de alta retenção ou migrados para memória principal.   
+		\end{itemize}
+	
+	A principal ideia para a migração de regiões de memória esta ligada também a redução de \textit{refreshs}, já que o modelo de \textit{refresh} utilizado no modelo proposto é o mesmo utilizado em memórias DRAM.
+	
+	Para os testes, são simulados três modelos de otimização de MTJ, um com baixa (lo), média (md) e alta retenção (hi). em uma arquitetura quad-core com três níveis de cache L1, L2 e L3, ambas usando STT-RAM. Os resultados dos testes mostram que a melhor configuração para uma hierarquia de dois níveis (L1 e L2) é usando L1-lo e uma L2 hibrida com L2-lo para região de baixa retenção e L2-md para a região de alta. Já para uma cache de 3 níveis a melhor configuração se deu usando L1-lo, L2-lo com L2-md e una L3 com a configuração de uma L1-lo para a região de baixa retenção e L3-md para região de alta.
+	
+	Os resultados dos testes mostram que o uso das \textit{caches} hibridas propostas utilizando os métodos de \textit{refresh} apresentados, tem um ganho de desempenho de até 99.8\% se comparada ao uso de um SRAM convencional. Já no quesito consumo de energia, o modelo apresentado tem ganhos de até 70\% se comparado a outros trabalhos e.g~\cite{Smullen2011}. O trabalho conclui que o uso de memórias hibridas (baixa e alta retenção) apresentam ganhos não somente em desempenho como também em consumo de energia. O uso de múltiplos níveis de retenção podem alcançar uma redução de até 73.8\% de redução de energia se comparado a implementações que mesclam SRAM/STT-RAM e se comparado a outros trabalhos anteriores que apresentam o uso de STT-RAM, consegue um aumento de desempenho de até 5.5\% e uma redução energética de até 30\%.
 
 % Jog2012 %
 
