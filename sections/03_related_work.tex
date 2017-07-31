@@ -8,7 +8,7 @@
 	\cite{li2011} & L1 e L2 & \\
 	\cite{Sun2011} & L1, L2 e L3 & \\
 	\cite{Jog2012} & L2 & \\
-	\cite{Chang2013} & & \\
+	\cite{Chang2013} & L3 & \\
 	\cite{Li2015} & & \\
 	\cite{Kim2015} & & \\
 	\cite{qiu2016} & & \\
@@ -79,3 +79,13 @@ Latência de Leitura (ciclos) & 3                                     & 14       
 	Os resultados deste trabalho procuram avaliar, dentre os três modelos, algumas configurações de estudo de cache, as quais foram: S-1 (SRAM de $1MB$); S-4 (Caso hipotético onde a SRAM tem $4MB$, porém apresenta a mesma latência de operação de S-1); M-4 (STT-RAM não volátil); V-M-4($1s$) (STT-RAM volátil com tempo de retenção de $1s$); V-M-4($10ms$) (STT-RAM volátil com tempo de retenção de $10ms$) e R-M-4($10ms$) (STT-RAM volátil utilizando a técnica de \textit{cache revive}). 
 
 	Em questões de desempenho, em média o desempenho de R-M-4 ($10ms$) só perde para o modelo hipotético S-4, tendo \textit{speedup} de quase 20\% ao simular os \textit{benchmarks} do PARSEC se comparados com o \textit{baseline} S-1. Analisando o consumo energético, percebe-se um ganho de 44\% na configuração M-4 para a S-1, o que é esperado dado que a STT-RAM gera pouca fuga de energia. Ao tornar a STT-RAM volátil, tem-se maior fuga de energia, ainda que inferior se comparada a SRAM. Na média, há ganhos em energia de 11\% no caso de estudo R-M-4 ($10ms$) comparado com V-M-4($1s$), além de melhoria em 18\% na energia em relação à configuração M-4 (\textit{baseline} da STT-RAM), concluindo assim que energeticamente o uso de STT-RAM volátil com o esquema de \textit{cache revive} atingiu os melhores resultados na média.
+	
+% Chang2013 %
+
+	Já o trabalho apresentado por \cite{Chang2013}, é realizada uma comparação entre três diferentes tipos de memórias aplicadas ao ultimo nível de cache, são elas a SRAM, STT-RAM e eDRAM. A ideia é otimizar a SRAM para baixa corrente de fuga, a STT-RAM para baixo consumo energético de escrita e a eDRAM usando a ideia de \textit{dead-line prediction} para reduzir a quantidade de \textit{refreshs} desnecessários. A implementação proposta de STT-RAM neste trabalho é um MTJ com retenção de apenas 1 segundo, não são experimentados outros tempos de retenção de dados devido a necessidade de \textit{buffers} e unidades de \textit{refresh} para manter os dados corretamente armazenados. Os autores não se preocupam com isso porque o foco principal do artigo é o uso de eDRAMs.
+	
+	Para os testes é simulada uma arquitetura com 8 cores e três níveis de cache onde, L1 e L2 são \textit{chaches} usando SDRAM de alto desempenho e L3 é uma cache de 32Mb, este ultimo nível de cache com os três diferentes tipos de memória (SDRAM, STT-RAM e eDRAM). Os resultados mostram que o uso de STT-RAM consomem até 48\% menos energia que o uso de SRAM com tudo, se a quantidade de escritas na memória é alta, STT-RAM consome maior quantidade de energia. Para cargas de trabalho com escrita intensiva a eDRAM se mostrou melhor na questão de consumo energético, ficando 36\% mais eficiente que a SRAM de baixo consumo e 17\% comparado a STT-RAM. No quesito desempenho, em média SDRAM apresenta os melhores tempos, porem em cargas de trabalhos dominadas por leituras, STT-RAM apresentam melhores resultados que as demais. 
+	
+	Outra observação feita no trabalho são os impactos que o tamanho e tecnologia exercem sobre as memórias. Caches que possuem alta densidade de memória usando STT-RAM tendem a apresentar menor consumo de energia. Isso se da pelo fato de que quanto maior a cache em média, menor será o número de cache miss, sendo assim menor o número de atualizações. No quesito tecnologia, quanto menor a célula STT-RAM, menor sera o consumo de energia, pois o tempo de escrita será menor. STT-RAM com tecnologia de 22nm são mais eficientes energeticamente do que as de 45nm, porém o tempo de retenção pode sofrer perda de estabilidade devido a instabilidade térmicas.
+	
+	Como conclusão os autores demostram que o uso de eDRAM com a técnica de \textit{dead-line prediction} apresentou os melhores resultados, porém a necessidade de caches de desempenho elevado e alta densidade serão necessárias no futuro. Assim o uso de novas tecnologias como a eDRAM e a STT-RAM são promissoras.
