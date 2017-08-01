@@ -8,6 +8,7 @@
 	\cite{li2011} & L1 e L2 & \\
 	\cite{Sun2011} & L1, L2 e L3 & \\
 	\cite{Jog2012} & L2 & \\
+	\cite{Li2013} & L2 & \\
 	\cite{Chang2013} & L3 & \\
 	\cite{Li2015} & L1 & \\
 	\cite{Kim2015} & & \\
@@ -79,7 +80,15 @@ Latência de Leitura (ciclos) & 3                                     & 14       
 	Os resultados deste trabalho procuram avaliar, dentre os três modelos, algumas configurações de estudo de cache, as quais foram: S-1 (SRAM de $1MB$); S-4 (Caso hipotético onde a SRAM tem $4MB$, porém apresenta a mesma latência de operação de S-1); M-4 (STT-RAM não volátil); V-M-4($1s$) (STT-RAM volátil com tempo de retenção de $1s$); V-M-4($10ms$) (STT-RAM volátil com tempo de retenção de $10ms$) e R-M-4($10ms$) (STT-RAM volátil utilizando a técnica de \textit{cache revive}). 
 
 	Em questões de desempenho, em média o desempenho de R-M-4 ($10ms$) só perde para o modelo hipotético S-4, tendo \textit{speedup} de quase 20\% ao simular os \textit{benchmarks} do PARSEC se comparados com o \textit{baseline} S-1. Analisando o consumo energético, percebe-se um ganho de 44\% na configuração M-4 para a S-1, o que é esperado dado que a STT-RAM gera pouca fuga de energia. Ao tornar a STT-RAM volátil, tem-se maior fuga de energia, ainda que inferior se comparada a SRAM. Na média, há ganhos em energia de 11\% no caso de estudo R-M-4 ($10ms$) comparado com V-M-4($1s$), além de melhoria em 18\% na energia em relação à configuração M-4 (\textit{baseline} da STT-RAM), concluindo assim que energeticamente o uso de STT-RAM volátil com o esquema de \textit{cache revive} atingiu os melhores resultados na média.
-	
+
+% Li2013 %
+
+	Em~\cite{Li2013}, propõe-se uma técnica chamada de CCear (\textit{Cache Coherence Enabled Adaptative Refresh}) a qual visa reduzir a quantitade de \textit{refreshes} em uma STT-RAM volátil. Este trabalho tem como diferencial obsevar a informação de coerência dos blocos de \textit{cache} L2 com a finalidade de atenuar o \textit{overhead} gerado por operações de \textit{refresh} na memória. Dentro da técnica de CCear, em cada bloco que é compartilhado são feitas $n$ operações de \textit{refreshes} após o carregamento da memória principal ou depois de um \textit{write-back} da \textit{cache} L1.
+
+	Utilizando-se do CCear, é feito um comparativo do uso de uma arquitetura com suporte a este mecanismo com a política de DRAM \textit{refresh} proposta em~\cite{Smullen2011}, sendo analisadas as questões energéticas e o IPC (Instruções por ciclo). Além destes dois casos, o trabalho ainda exibe resultados do que seria a situação ideal para a implementação de STT-RAM voláteis. Na energia, o modelo de DRAM \textit{refresh} exibe consumo alto se comparado ao caso ideal, enquanto que ao usar o CCear há uma redução em relação à política de DRAM \textit{refresh} na média em cerca de 10\%. Avaliando o IPC, útilizando CCear existe uma melhora no IPC comparado ao DRAM \textit{refresh} entre cerca de 3\% a 7\%, ocorrido devido à menor quantidade de conflitos entre \textit{refreshes} e leituras na \textit{cache}.
+
+	O artigo conclui dizendo que o \textit{overhead} para armazenamento de informações necessárias para o funcionamento do CCear é desprezível - Inicialmente, é de menos de 0,2\%, visto que cada bloco da LLC precisa de um bit para indicar se está expirado ou não. Além disto, cada bloco da LLC também usa um contador de 4 \textit{bits} para controlar quantos \textit{refreshes} são feitos. Também conclui que o CCear pode adaptativamente minimizar a quantidade de operações de \textit{refresh} necessárais para o uso de STT-RAM volátil.
+
 % Chang2013 %
 
 	Já o trabalho apresentado por \cite{Chang2013}, é realizada uma comparação entre três diferentes tipos de memórias aplicadas ao ultimo nível de cache, são elas a SRAM, STT-RAM e eDRAM. A ideia é otimizar a SRAM para baixa corrente de fuga, a STT-RAM para baixo consumo energético de escrita e a eDRAM usando a ideia de \textit{dead-line prediction} para reduzir a quantidade de \textit{refreshs} desnecessários. A implementação proposta de STT-RAM neste trabalho é um MTJ com retenção de apenas 1 segundo, não são experimentados outros tempos de retenção de dados devido a necessidade de \textit{buffers} e unidades de \textit{refresh} para manter os dados corretamente armazenados. Os autores não se preocupam com isso porque o foco principal do artigo é o uso de eDRAMs.
