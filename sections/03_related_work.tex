@@ -9,7 +9,7 @@
 	\cite{Sun2011} & L1, L2 e L3 & \\
 	\cite{Jog2012} & L2 & \\
 	\cite{Chang2013} & L3 & \\
-	\cite{Li2015} & & \\
+	\cite{Li2015} & L1 & \\
 	\cite{Kim2015} & & \\
 	\cite{qiu2016} & & \\
 	\cite{kim2016} & & \\
@@ -89,3 +89,26 @@ Latência de Leitura (ciclos) & 3                                     & 14       
 	Outra observação feita no trabalho são os impactos que o tamanho e tecnologia exercem sobre as memórias. Caches que possuem alta densidade de memória usando STT-RAM tendem a apresentar menor consumo de energia. Isso se da pelo fato de que quanto maior a cache em média, menor será o número de cache miss, sendo assim menor o número de atualizações. No quesito tecnologia, quanto menor a célula STT-RAM, menor sera o consumo de energia, pois o tempo de escrita será menor. STT-RAM com tecnologia de 22nm são mais eficientes energeticamente do que as de 45nm, porém o tempo de retenção pode sofrer perda de estabilidade devido a instabilidade térmicas.
 	
 	Como conclusão os autores demostram que o uso de eDRAM com a técnica de \textit{dead-line prediction} apresentou os melhores resultados, porém a necessidade de caches de desempenho elevado e alta densidade serão necessárias no futuro. Assim o uso de novas tecnologias como a eDRAM e a STT-RAM são promissoras.
+	
+% Li2015 %
+
+	No trabalho de \cite{Li2015}, também e proposta uma cache usando STT-RAM com baixo tempo de retenção de dados e com a necessidade de \textit{refresh}. Porém o trabalho vai além, neste os autores se preocupam com a ordenação dos dados na cache para reduzir o número de \textit{refresh}. No trabalho é proposto um ordenação dos dados em tempo de compilação para extrair os beneficios da STT-RAM e ao mesmo tempo reduzir o consumo de energia através da redução da quantidade de \textit{refreshs} na memória. O trabalho propõem uma nova metodologia de refresh para memória chamado de N-refresh. Os dados que são escritos mas não são utilizados por um grande período de tempo ou sofrem uma re-escrita, apos um determinado tempo limite, são migrados para a memória principal, descartando assim a necessidade de refresh da cache. Também são propostos dois modelos de organização de dado em memória, são eles: ILP - \textit{Integer Linear Programming} e Heuristic Data Layout, ambos utilizam técnicas sub-ótimas para ordenar os dados entre os blocos da cache.
+	
+	Para os experimentos os autores simulam uma arquitetura de um processador \textit{single-core} de 500Mhz e com uma cache de 16Mb, com blocos de 32b 4 vias. Tempo de retenção de dados de $26.5\mu s$. O metodo de refresh e as tecnicas de otmização em tempo de compilação são empregadas em outros dois metodos de refresh presentes na literatura que são \textit{full-refresh}~\cite{Sun2011} e dirty-refresh~\cite{Jog2012}. Os testes foram realizados usando as seguintes configurações vistos na tabela~\ref{tabela-ilp}.
+	
+\begin{table}[!hb]
+\centering
+\caption{Modelos de avaliação dos testes}
+\label{tabela-ilp}
+\begin{tabular}{lccc}
+\hline
+                                  & \multicolumn{1}{l}{\textit{full-refresh}} & \multicolumn{1}{l}{\textit{dirty-refresh}} & \multicolumn{1}{l}{\textit{N-refresh}} \\ \hline
+Layout de dados padrão            & FR                                        & DR                                         & NR                                     \\
+Layout de dados usando heurística & FR-DL                                     & DR-DL                                      & NR-DL                                  \\
+Layout usando ILP                 & FR-ILP                                    & DR-ILP                                     & NR-ILP                                 \\ \hline
+\end{tabular}
+\end{table}
+	
+	Os resultados demostram que o uso da técnica NR-DL, reduziu em apenas 2.0\% a quantidade de \textit{refresh} se comparado a mesma técnica sem o uso de heurística (NR). Porem os outros métodos já conseguiram melhores resultados se comparado a seus modelos padrão (FR-DL 12.4\% e DR-DL 15.7\%). Mas se comparado o uso FR com DR e NR, as reduções chegam a 42.7\% e 82.4\% respectivamente. Ja no consumo de energia, se comparados ao metodo FR, DR-DL e NR-DL conseguem reduções de consumo de 26,4\% e 38.0\% respectivamente.
+	
+	Continuo daqui....
