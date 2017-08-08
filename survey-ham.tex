@@ -9,6 +9,13 @@
 
 \usepackage{tikz}
 \usetikzlibrary{positioning}
+\usepackage{hyperref}
+
+\hypersetup{
+    hidelinks, % Remove coloração e caixas
+    unicode=true,   %Permite acentuação no bookmark
+    linktoc=all %Habilita link no nome e página do sumário
+}
 
 %\usepackage[round,authoryear]{natbib}
 
@@ -48,6 +55,8 @@
 \input{sections/04_discussions.tex}
 
 \input{sections/05_conclusions.tex}
+
+\listoftodos
 
 \bibliographystyle{sbc}
 \bibliography{survey-ham}
