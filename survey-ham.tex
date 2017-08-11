@@ -27,6 +27,35 @@
 \newcommand\todoin[2][]{\todo[inline, caption={~}, #1]{
 \begin{minipage}{\textwidth-4pt}#2\end{minipage}}}
 
+%%%WORKAROUND TO MAKE HYPERREF COMPATIBLE WITH SBC BIBLIOGRAFY STYLE. Author: Douglas P. Pasqualin
+\makeatletter
+  \def\@lbibitem[#1]#2{%
+    \@skiphyperreftrue
+    \H@item[%
+      \ifx\Hy@raisedlink\@empty
+        \hyper@anchorstart{cite.#2\@extra@b@citeb}%
+        \hyper@anchorend
+      \else
+        \Hy@raisedlink{%
+          \hyper@anchorstart{cite.#2\@extra@b@citeb}\hyper@anchorend
+        }%
+      \fi
+      \hfill
+    ]%
+    \@skiphyperreffalse
+    \if@filesw
+      \begingroup
+        \let\protect\noexpand
+        \immediate\write\@auxout{%
+          \string\bibcite{#2}{#1}%
+        }%
+      \endgroup
+    \fi
+    \ignorespaces
+  } 
+\makeatother  
+%%%END OF WORKAROUND. DO NOT CHANGE!
+
 \sloppy
 
 \title{Um estudo sobre o uso de memórias STT-RAM voláteis em diferentes níveis de memória cache}
