@@ -11,9 +11,8 @@
 \cite{Li2013} & L2 & \\
 \cite{Chang2013} & L3 & \\
 \cite{Li2015} & L1 & \\
-\cite{Kim2015} & & \\
 \cite{qiu2016} & & \\
-\cite{kim2016} & & \\
+\cite{kim2016} & L3 & \\
 \end{tabular}
 \end{center}
 }
@@ -129,3 +128,17 @@ Já no consumo de energia dinâmica, as técnicas reduziram a energia consumida em 
 Uma outra observação é feita no trabalho. O quanto o tempo de retenção dos dados ajuda a reduzir o consumo de energia e aumenta o desempenho. Observa-se que quanto maior o tempo de retenção, o escalonamento de \textit{loops} perde desempenho. Isso se dá pelo fato de que, o número de iterações do \textit{loop} comparado ao tempo de retenção é muito menor, assim, mais atualizações se tornam necessárias na memória, prejudicando assim o uso da técnica.
 
 Como conclusão, o trabalho expõe o problema do \textit{overhead} criado pelos sistemas de \textit{refresh} em memória, o que pode degradar tanto o desempenho quanto o consumo energético. Com o intuito de reduzir a necessidade de \textit{refresh} em memória, o escalonamento de \textit{loops}, para melhor a alocação e acesso de dados na memória se torna uma técnica promissora.
+
+% Kim2016 %
+
+Por fim, o trabalho discutido em~\cite{Kim2016} mostra uma abordagem sobre STT-RAM voláteis oposta ao dos trabalhos anteriores. Isto porque o artigo defende que a utilização de métodos de \textit{refresh} em STT-RAM voláteis não são confiáveis o suficiente para serem utilizados. Afirma-se que o tempo de retenção da STT-RAM volátil não é determinístico, tampouco pode ser previsto. Além disto, falhas na retenção da STT-RAM volátil não podem ser previstos por causa da natureza estocástica da falha. Com isto, sugere-se a utilização de ECC (\textit{Error Correction Code}) e \textit{Scrubbing} para manter os dados em memória confiáveis. Por fim, uma célula STT-RAM volátil deve ser projetada de maneira cuidadosa no que diz respeito à sua estabilidade termal -- para isso, deve-se levar em consideração: (i) o tamanho do \textit{array} de memória, (ii) a força do código de ECC, (iii) o período de \textit{scrubbing} e (iv) a confiabilidade-alvo.
+
+A relação entre a estabiliadde termal e os quatro itens citados anteriormente é estudada neste trabalho. Alguns resultados são mostrados no sentido da relação entre estes fatores, e.g. com o aumento do período de \textit{scrubbing} de maneira exponencial, o mínimo de estabilidade termal aumenta lenta e linearmente. Além disto, ao usar ECC, reduz-se o mínimo de estabilidade termal comparada a STT-RAM não volátil. Outras observações vistas foram:
+
+\begin{itemize}
+	\item Quanto mais frequente o \textit{scrubbing}, mais ineficiente ele tende a ser, dado que o mesmo diminui pouco a estabilidade termal necessária enquanto que o \textit{overhead} gerado pelo \textit{scrubbing} aumenta significativamente em termos de desempnho e energia;
+	\item Técnicas de ECC mais simples são melhores para redução da estabilidade termal;
+	\item A medida que diminui a taxa de falha exponencialmente, a estabilidade termal também aumenta lentamente de maneira linear.
+\end{itemize}
+
+Outros resultados são exibidos verificando o desempenho e a eficiência energética ao usar STT-RAM volátil com \textit{scrubbing} e ECC. A STT-RAM é empregada como LLC, e são testadas 9 diferentes configurações envolvendo o tempo de retenção da memória e diferentes níveis de ECC. Chega-se a conclusão de que a utilização de tanto ECC como \textit{scrubbing} faz com que a STT-RAM volátil torne-se ineficiente em termos de desempenho e energia de maneira geral. Somente o uso da técnica mais simples de ECC com um período de \textit{scrubbing} maior que $10ms$ consegue ter redução de consumo energético comparada à \textit{baseline} (STT-RAM não volátil).

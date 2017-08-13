@@ -14,6 +14,7 @@
 *.out
 *.snm
 *.synctex.gz
+*.tdo
 *.toc
 *.xoj
 .DS_Store
