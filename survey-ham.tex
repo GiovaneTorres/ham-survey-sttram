@@ -7,8 +7,12 @@
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc} % inserir as url 
 
+\usepackage[usenames,dvipsnames]{xcolor}
+
 \usepackage{tikz}
+\usepackage{tkz-kiviat}
 \usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
 \usepackage{hyperref}
 
 \hypersetup{
@@ -71,7 +75,8 @@
 
 \maketitle
    
-\begin{resumo} 
+\begin{resumo}
+	Atualmente existe a necessidade de melhorias na área de memórias, sendo o principal objetivo reduzir latência e consumo energético. Este trabalho faz uma avaliação de STT-RAM voláteis, uma tecnologia emergente de memória que pode suprir esta demanda. Porém, sua aplicação necessita de projetos elaborados para manter o correto armazenamento dos dados.
   
 \end{resumo}
 
@@ -84,8 +89,6 @@
 \input{sections/04_discussions.tex}
 
 \input{sections/05_conclusions.tex}
-
-\listoftodos
 
 \bibliographystyle{sbc}
 \bibliography{survey-ham}

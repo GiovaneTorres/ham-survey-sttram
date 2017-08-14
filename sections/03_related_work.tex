@@ -1,22 +1,5 @@
 \section{Trabalhos Relacionados}
 
-\todoin[size=\scriptsize,linecolor=gray,backgroundcolor=gray!25,bordercolor=gray]{
-\begin{center}
-\begin{tabular}{lcp{7cm}}
-\multicolumn{1}{c}{\textbf{Artigo}} & \multicolumn{1}{c}{\textbf{Níveis de Cache}} & \multicolumn{1}{c}{\textbf{Descrição}} \\
-\cite{Smullen2011} & L1,L2,L3 & Primeiro artigo a abordar STT-RAM volátil \\
-\cite{li2011} & L1 e L2 & \\
-\cite{Sun2011} & L1, L2 e L3 & \\
-\cite{Jog2012} & L2 & \\
-\cite{Li2013} & L2 & \\
-\cite{Chang2013} & L3 & \\
-\cite{Li2015} & L1 & \\
-\cite{qiu2016} & & \\
-\cite{kim2016} & L3 & \\
-\end{tabular}
-\end{center}
-}
-
 % Smullen2011 %
 
 O primeiro trabalho que faz um estudo e apresenta o conceito de STT-RAM volátil é visto em~\cite{Smullen2011}. Este trabalho primeiramente explica como a STT-RAM pode ser volátil -- efeito atingido através da redução da área planar da camada livre da MTJ da célula de memória. O artigo apresenta um modelo de STT-RAM volátil, exibe técnicas para otimização desta memória para prover melhorias no desempenho da escrita. Este modelo é testado em todos os níveis de \textit{cache} nas questões de desempenho, energia e \textit{energy-delay}. Por fim, com a perda de retenção da STT-RAM, os dados em memória não podem ser perdidos. Com isto, o trabalho estuda um esquema simples de \textit{refresh} que adiciona pouco \textit{overhead} sobre o sistema de memória.
@@ -131,7 +114,15 @@ Como conclusão, o trabalho expõe o problema do \textit{overhead} criado pelos si
 
 % Kim2016 %
 
-Por fim, o trabalho discutido em~\cite{Kim2016} mostra uma abordagem sobre STT-RAM voláteis oposta ao dos trabalhos anteriores. Isto porque o artigo defende que a utilização de métodos de \textit{refresh} em STT-RAM voláteis não são confiáveis o suficiente para serem utilizados. Afirma-se que o tempo de retenção da STT-RAM volátil não é determinístico, tampouco pode ser previsto. Além disto, falhas na retenção da STT-RAM volátil não podem ser previstos por causa da natureza estocástica da falha. Com isto, sugere-se a utilização de ECC (\textit{Error Correction Code}) e \textit{Scrubbing} para manter os dados em memória confiáveis. Por fim, uma célula STT-RAM volátil deve ser projetada de maneira cuidadosa no que diz respeito à sua estabilidade termal -- para isso, deve-se levar em consideração: (i) o tamanho do \textit{array} de memória, (ii) a força do código de ECC, (iii) o período de \textit{scrubbing} e (iv) a confiabilidade-alvo.
+Por fim, o trabalho discutido em~\cite{kim2016} mostra uma abordagem sobre STT-RAM voláteis oposta ao dos trabalhos anteriores. Isto porque o artigo defende que a utilização de métodos de \textit{refresh} em STT-RAM voláteis não são confiáveis o suficiente para serem utilizados. Afirma-se que o tempo de retenção da STT-RAM volátil não é determinístico, tampouco pode ser previsto. Além disto, falhas na retenção da STT-RAM volátil não podem ser previstos por causa da natureza estocástica da falha. Além disto, a STT-RAM volátil também apresenta três tipos de falhas, sendo estas:
+
+\begin{itemize}
+	\item Escrita: Ao aplicar um pulso de corrente, este pode não ter tido tempo ou intensidade suficiente para alterar o dado; 
+	\item Leitura: Dependendo da intensidade da corrente aplicada a MTJ, esta pode realizar uma leitura errada ou até mesmo alterar o dado;
+	\item Retenção: Não houve uma atualização dentro do tempo de vida da retenção do dado na MTJ.
+\end{itemize}
+
+Com isto, sugere-se a utilização de ECC (\textit{Error Correction Code}) e \textit{Scrubbing} para manter os dados em memória confiáveis. Por fim, uma célula STT-RAM volátil deve ser projetada de maneira cuidadosa no que diz respeito à sua estabilidade termal -- para isso, deve-se levar em consideração: (i) o tamanho do \textit{array} de memória, (ii) a força do código de ECC, (iii) o período de \textit{scrubbing} e (iv) a confiabilidade-alvo.
 
 A relação entre a estabiliadde termal e os quatro itens citados anteriormente é estudada neste trabalho. Alguns resultados são mostrados no sentido da relação entre estes fatores, e.g. com o aumento do período de \textit{scrubbing} de maneira exponencial, o mínimo de estabilidade termal aumenta lenta e linearmente. Além disto, ao usar ECC, reduz-se o mínimo de estabilidade termal comparada a STT-RAM não volátil. Outras observações vistas foram:
 
