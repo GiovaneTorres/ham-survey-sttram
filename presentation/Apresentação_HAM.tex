@@ -1,0 +1,281 @@
+\documentclass[10pt, pdf,xcolor=pdftex,dvipsnames,table]{beamer}
+
+\usepackage[brazil]{babel}
+\usepackage[utf8] {inputenc}
+\usepackage [T1] {fontenc}
+\usepackage{pgfpages}
+\usepackage{times}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{pxfonts,txfonts}
+\usepackage{url}
+\usefonttheme{structurebold}
+\usepackage{hyphenat}
+\usepackage{multicol}
+\usepackage{todonotes}
+\usepackage{amssymb}
+\usepackage{latexsym}
+\usepackage{fixltx2e}
+
+%\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{tikz}
+\usepackage{tkz-kiviat}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
+
+\newcommand{\x}{\textbf{\textcolor{DarkGreen}{$\surd$}}}
+\newcommand{\xx}{\textbf{\textcolor{DarkBlue}{$\odot$}}}
+\newcommand{\xxx}{\textbf{\textcolor{DarkRed}{$\times$}}}
+
+
+\usetheme{Amsterdam}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+\setbeameroption{hide notes}
+
+%==================================================================================
+\renewcommand{\evento}{Hierarquias Avançadas de Memória}
+\title{Um estudo sobre o uso de memórias STT-RAM voláteis em diferentes níveis de memória cache}
+\author[]{\textbf{Giovane de O. Torres\inst{1}, Rodrigo M. Duarte\inst{1}}\\
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Instituição
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\institute{Pós-Graduação em Computação \\ Universidade Federal de Pelotas \\
+\url{} 
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Data
+% sem data (\date{})
+% dia de hoje  \date{\today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\date{Agosto de 2017}
+
+\begin{document}
+
+\frame{\titlepage}
+\frame{\tableofcontents}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Conteúdo da Apresentação
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introdução}
+
+\frame
+{
+\frametitle{Introdução}
+		\begin{block}{Porque novos tipos de memória?}
+			\begin{itemize}
+				\item SRAMs consomem muita energia.
+				\begin{itemize}
+					\item Tanto estática como dinâmica.
+				\end{itemize}
+				\item Reduzir \textit{Gap} entre Processador x Memória.
+				\begin{itemize}
+					\item Reduzir latência da memória para aumentar desempenho.
+				\end{itemize}
+			\end{itemize}	 
+		\end{block}
+		\begin{block}{Tecnologias Emergentes de Memória}
+			\begin{itemize}
+				\item Memórias não voláteis.
+				\begin{itemize}
+					\item Promissoras, porém possuem alta latência de escrita.
+					\item STT-RAM Volátil.
+				\end{itemize}
+			\end{itemize}	 
+		\end{block}
+}
+
+\section{STT-RAM e Volatilidade}
+
+\frame
+{
+\frametitle{STT-RAM e Volatilidade}
+		\begin{block}{STT-RAM}
+			\begin{itemize}
+				\item Alta latência de escrita e baixa de leitura.
+				\item baixo consumo energético (\textit{leakage} desprezível).
+				\item Maior densidade de memória por área física.
+			\end{itemize}	 
+		\end{block}
+		\begin{block}{Funcionamento}
+			\begin{itemize}
+				\item Possui duas camadas magnéticas intercaladas por um material isolante.
+				\item Essa composição é conhecida como MTJ (Magnetic Tunnel Junction).
+			\end{itemize}	 
+		\end{block}
+}
+
+\frame
+{
+\frametitle{STT-RAM e Volatilidade}
+\begin{tikzpicture}
+
+\draw[black,fill=black!30] (0,0) rectangle (3,0.5);		% Left reference layer
+\draw[black] (0,0.5) rectangle (3,0.8);					% Left barrier
+\draw[black,fill=black!30] (0,0.8) rectangle (3,1.3);	% Left free layer
+
+\draw[<-,very thick] (1,1.05) -- (2,1.05);				% Arrow of reference layer
+\draw[<-,very thick] (1,0.25) -- (2,0.25);				% Arrow of free layer
+
+\draw[black,fill=black!30] (8,0) rectangle (11,0.5);	% Right reference layer
+\draw[black] (8,0.5) rectangle (11,0.8);				% Right barrier
+\draw[black,fill=black!30] (8,0.8) rectangle (11,1.3);	% Right free layer
+
+\draw[<-,very thick] (9,1.05) -- (10,1.05);				% Arrow of reference layer
+\draw[->,very thick] (9,0.25) -- (10,0.25);				% Arrow of free layer
+
+\node at (5.5,1.05) {Camada de referência}; 			% Text: reference layer
+\node at (5.5,0.25) {Camada livre}; 					% Text: free layer
+
+\draw[-] (1.5,0) -- (1.5,-0.5);							% Left downwards small line 
+\draw[-] (9.5,0) -- (9.5,-0.5);							% Right downwards small line 
+
+\draw[black] (1.5,-0.6) circle (0.1);					% Left downwards small circle
+\draw[black] (9.5,-0.6) circle (0.1);					% Right downwards small circle
+
+\draw[-] (1.5,1.3) -- (1.5,1.8);						% Left upwards small line 
+\draw[-] (9.5,1.3) -- (9.5,1.8);						% Right upwards small line 
+
+\draw[black] (1.5,1.9) circle (0.1);					% Left upwards small circle
+\draw[black] (9.5,1.9) circle (0.1);					% Right upwards small circle
+
+\node at (1.5,-1.2) {"1"~lógico};						% Text: logical 1
+\node at (1.5,-1.7) {Alta resistividade};				% Text: high resistivity
+
+\node at (9.5,-1.2) {"0"~lógico};						% Text: logical 0
+\node at (9.5,-1.7) {Baixa resistividade};				% Text: low resistivity
+
+\end{tikzpicture}	
+}
+
+\frame
+{
+\frametitle{STT-RAM e Volatilidade}
+		\begin{block}{STT-RAM Volátil}
+			\begin{itemize}
+				\item Redução da área física da MTJ.
+				\item aumento da temperatura de trabalho.
+				\item Redução da corrente de escrita.
+			\end{itemize}	 
+		\end{block}
+		\begin{block}{Contrapartida}
+			\begin{itemize}
+				\item Redução do tempo de retenção do dado.
+				\item Necessidade de \textit{refresh} para manter os dados corretamente armazenados.
+			\end{itemize}	 
+		\end{block}
+}
+
+\frame
+{
+\frametitle{STT-RAM e Volatilidade}
+	\begin{figure}[!h]
+	 \centering
+	 	\begin{tikzpicture}
+	 	\tkzKiviatDiagram[scale=0.4,label distance=.5cm,
+	 	    radial  = 5,
+	 	    gap     = 3,  
+	 	    lattice = 2]{Retenção,Latência de escrita,Estabilidade,Corrente,\textit{Refresh}}
+	 	\tkzKiviatLine[thick, color=blue, mark=none, fill=blue!20, opacity=.5](2,2,2,2,0)
+	 	\tkzKiviatLine[thick, color=red, mark=none, fill=red!20,opacity=.5](1,1,1,1,2)    
+	 	%\tkzKiviatGrad[prefix=,unity=100,suffix=\ £](1)  
+	 	\end{tikzpicture}
+	 	\caption{\textit{Tradeoffs} entre as caracaterísticas da célula STT-RAM.}
+	 	\label{fig:we}
+	 \end{figure}	
+}
+
+\section{Técnicas para uso da STT-RAM volátil em cache}
+
+\frame
+{
+\frametitle{Técnicas para uso da STT-RAM volátil em cache}
+		\begin{block}{Técnicas em Hardware}
+			\begin{itemize}
+				\item \textit{Refresh} simples estilo DRAM.
+				\item Hierarquia de \textit{caches} Hibridas.
+				\item Uso de contadores.
+			\end{itemize}	 
+		\end{block}
+		\begin{block}{Técnicas em Software}
+			\begin{itemize}
+				\item Heurística para exploração de localidade temporal.
+				\item Escalonamento para exploração localidade espacial.
+			\end{itemize}
+		\end{block}
+}
+
+\frame
+{
+\frametitle{Técnicas para uso da STT-RAM volátil em cache}
+		\begin{block}{Resultados Gerais}
+			\begin{itemize}
+				\item Ganhos de desempenho se comparado a STT-RAM não volátil.
+				\item redução de consumo energético em relação a SRAM.
+				\item Maior densidade de memória por área física.
+			\end{itemize}	 
+		\end{block}
+}
+
+\frame
+{
+\frametitle{Técnicas para uso da STT-RAM volátil em cache}
+		\begin{block}{Ressalvas}
+			\begin{itemize}
+				\item Falha de retenção tem problema estocástico.
+				\item Três tipos de falha em STT-RAM Volátil.
+				\begin{itemize}
+					\item Escrita: Dado pode não ser gravado corretamente.
+					\item Leitura: Pode ocorrer leitura errada ou alteração indevida.
+					\item Retenção: Não houve atualização durante o tempo de vida do dado.
+				\end{itemize} 
+			\end{itemize}	 
+		\end{block}
+		\begin{block}{Possíveis Soluções}
+			\begin{itemize}
+				\item Uso de \textit{Scrubbing} e ECC.
+				\begin{itemize}
+					\item Não se demostra eficiente, tanto em desempenho quanto em consumo energético.
+				\end{itemize} 
+			\end{itemize}	 
+		\end{block}
+}
+
+\section{Conclusões}
+
+\frame
+{
+\frametitle{Conclusões}
+		\begin{block}{STT-RAM é promissora candidata para substituir SRAMs}
+			\begin{itemize}
+				\item Baixa latência e consumo energético.
+				\item Alta densidade de memória
+			\end{itemize}	 
+		\end{block}
+		\begin{block}{Aplicação ainda precisa de maiores estudos}
+			\begin{itemize}
+				\item Falhas estocásticas.				
+				\item Técnicas de \textit{refresh} podem não ser suficientes.
+			\end{itemize}
+		\end{block}
+}
+
+
+\titlepage
+\end{document}
+
